@@ -60,7 +60,7 @@ let veryOldInventors = []
 
 // Enter your solution code here:
 
-
+veryOldInventors = inventors.filter(inventor => inventor.year >= 1500 && inventor.year < 1600);
 
 // Check your return value:
 console.log('Exercise 1 My Result: ', veryOldInventors)
@@ -86,6 +86,10 @@ let inventorNames = []
 
 // Enter your solution code here:
 
+inventorNames = inventors.map(inventor => ({
+  first: inventor.first,
+  last: inventor.last
+}))
 
 
 // Check your return value:
@@ -112,7 +116,7 @@ console.log('Exercise 2 Correct Result: ',
 
 // 3. Sort the inventors by birth date in ascending order (from those born furthest in the past to those born most recently).
 
-let sortedByBirthYear = []
+let sortedByBirthYear = inventors.sort ((a,b) => a.year - b.year);
 
 // Enter your solution code here:
 
@@ -146,10 +150,13 @@ console.log('Exercise 3 Correct Result: ',
 // -  Utilize the Array.prototype.find() method to locate the object for the inventor named 'Ada'.
 // -  Assign the found inventor object to the variable 'inventorNamedAda'
 
-let inventorNamedAda = {}
+let inventorNamedAda = []
 
 // Enter you solution code here:
 
+inventorNamedAda = inventors.find((inventor) => {
+  return inventor.first === 'Ada';
+})
 
 
 // Check your return value:
@@ -169,6 +176,10 @@ let firstLast = []
 
 // Enter your solution code here:
 
+firstLast = people.map(name => {
+  const [last, first] = name.split (',');
+  return `${first} ${last}`;
+});
 
 
 // Check your return value:
@@ -231,6 +242,7 @@ let isAdultPresent = null
 
 // Enter your solution code here:
 
+isAdultPresent = devs.some(dev => dev.year >= 2006);
 
 
 // Check your return value:
@@ -249,7 +261,7 @@ let isEveryone19OrOlder = null
 
 // Enter your solution code here:
 
-
+isEveryone19OrOlder = devs.every (dev => (new Date().getFullYear() - dev.year) >= 19);
 
 // Check your return value:
 console.log('Exercise 7 My Result: ', isEveryone19OrOlder)
@@ -267,7 +279,9 @@ let commentById = {}
 
 // Enter your solution code here:
 
-
+commentById = comments.find((comment) =>{
+  return comment.id === 823423;
+});
 
 // Check your return value:
 console.log('Exercise 8 My Result: ', commentById)
@@ -284,7 +298,9 @@ let idx = null
 
 // Enter your solution code here:
 
-
+idx = comments.findIndex((commentI) => {
+  return commentI.id === 123523;
+})
 
 // Check your return value:
 console.log('Exercise 9 My Result: ', idx)
@@ -307,6 +323,10 @@ console.log('Exercise 9 Correct Result: ', 3)
 let totalYearsLived = 0
 
 // Enter your solution code here:
+
+totalYearsLived = inventors.reduce((total, inventor) => {
+  return total + (inventor.passed - inventor.year);
+}, 0);
 
 
 
@@ -331,7 +351,10 @@ let travelMethodCounts = {}
 
 // Enter your solution code here:
 
-
+travelMethodCounts = travelMethods.reduce((counts,method) => {
+  counts[method] = (counts[method] || 0) +1;
+  return counts;
+}, {});
 
 // Check your return value:
 console.log('Bonus 2 My Result: ', travelMethodCounts)
