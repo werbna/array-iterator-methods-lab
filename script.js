@@ -351,10 +351,26 @@ let travelMethodCounts = {}
 
 // Enter your solution code here:
 
-travelMethodCounts = travelMethods.reduce((counts,method) => {
-  counts[method] = (counts[method] || 0) +1;
+// travelMethodCounts = travelMethods.reduce((counts,method) => {
+//   counts[method] = (counts[method] || 0) +1;
+//   return counts;
+// }, {});
+
+// travelMethodCounts = travelMethods.reduce((counts,method) => {
+//   counts[method] = (counts[method] ?? 0) + 1;
+//   return counts
+// }, {});
+
+travelMethodCounts = travelMethods.reduce((counts, method) => {
+  if (method in counts) {
+    counts[method]++;
+  } else {
+    counts[method] = 1;
+  }
   return counts;
 }, {});
+
+
 
 // Check your return value:
 console.log('Bonus 2 My Result: ', travelMethodCounts)
